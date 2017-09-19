@@ -26,10 +26,7 @@ class State:
         down_pos = self.map.car_location;
         down_pos = [down_pos[0] + 2, down_pos[1]];
         try:
-            if self.map.board[down_pos[0] - 1, down_pos[1]] != 0:
-                    self.map.move_car(down_pos,self.car);
-            else:
-                    pass;
+            self.map.move_car(down_pos,self.car);
         except:
             pass;
 
@@ -37,10 +34,7 @@ class State:
         down_pos = self.map.car_location;
         down_pos = [down_pos[0], down_pos[1] - 2];
         try:
-            if self.map.board[down_pos[0], down_pos[1] + 1] != 0:
-                    self.map.move_car(down_pos,self.car);
-            else:
-                    pass;
+            self.map.move_car(down_pos,self.car);
         except:
             pass;
 
@@ -48,10 +42,7 @@ class State:
         down_pos = self.map.car_location;
         down_pos = [down_pos[0], down_pos[1] + 2];
         try:
-            if self.map.board[down_pos[0], down_pos[1] - 1] != 0:
-                    self.map.move_car(down_pos,self.car);
-            else:
-                    pass;
+            self.map.move_car(down_pos,self.car);
         except:
             pass;
 
@@ -59,10 +50,7 @@ class State:
         down_pos = self.map.car_location;
         down_pos = [down_pos[0] - 2, down_pos[1]];
         try:
-            if self.map.board[down_pos[0] + 1, down_pos[1]] != 0:
-                    self.map.move_car(down_pos,self.car);
-            else:
-                    pass;
+            self.map.move_car(down_pos,self.car);
         except:
             pass;
 

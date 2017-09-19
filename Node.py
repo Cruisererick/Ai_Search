@@ -8,7 +8,8 @@ class Node:
         self.action = action;
         self.path_cost = path_cost;
         self.road = [];
-        self.road.append(action);
+        if action != None:
+            self.road.append(action);
         self.road = road + self.road;
 
         self.execute_action();

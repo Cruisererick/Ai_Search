@@ -2,14 +2,14 @@ import numpy as np
 
 class Car:
 
-    def __init__(self, car_pos, pets = np.zeros(4)):
+    def __init__(self, car_pos, pets = np.zeros(20)):
         self.location = car_pos;
-        self.pets = np.zeros(4);
-        for x in range (0, 3):
+        self.pets = np.zeros(20);
+        for x in range (0, len(self.pets)):
             self.pets[x] = pets[x];
 
     def take_pet(self, pet):
-        for x in range (0, 3):
+        for x in range (0, len(self.pets)):
             if self.pets[x] == 0:
                 self.pets[x] = pet
                 return True;
@@ -19,7 +19,7 @@ class Car:
     def drop_pet(self, house):
         pet_to_drop = house + 32;
 
-        for x in range (0, 3):
+        for x in range (0, len(self.pets)):
              if self.pets[x] == pet_to_drop:
                 self.pets[x] = 0;
                 return True;

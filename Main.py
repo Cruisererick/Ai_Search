@@ -30,8 +30,12 @@ def breadth_first (problem):
         if frontier.empty():
             return False;
         touple = frontier.get();
-        node = touple[3];
+        node = Node(problem, touple[3].state,None, touple[3].path_cost, touple[3].road);
         frontier_hash_map.pop(node.hashcode);
+
+        sol = ['l','l','u','r','r','r','d','d','l','l','l','u','r','r','u','r','r','d','d','r','u','u']
+        if node.road == sol:
+            print("aja");
 
         if problem.Goal_Test(node.state):
             return node.road;
@@ -39,14 +43,15 @@ def breadth_first (problem):
         if node.hashcode not in explored_hash_map:
             explored_hash_map[node.hashcode] = node;
 
-        for actions in problem.actions:
-            child = Node(problem, node.state, actions, node.path_cost + 1, node.road);
+        can_do = problem.check_actions(node.state);
+        for action in can_do:
+            child = Node(problem, node.state, action, node.path_cost + 1, node.road);
 
-            if child.hashcode not in explored_hash_map and frontier_hash_map:
+            if (child.hashcode not in explored_hash_map) and (child.hashcode not in frontier_hash_map):
                     touple = (child.path_cost, child.road, next(tie_breaker), child)
                     frontier.put(touple);
                     frontier_hash_map[child.hashcode] = child;
-
+            '''
             elif child.hashcode in frontier_hash_map:
                 auxnode = frontier_hash_map[child.hashcode];
                 if auxnode.path_cost > child.path_cost:
@@ -63,15 +68,16 @@ def breadth_first (problem):
                             auxfrontier.put(touple);
                     frontier.queue = copy.deepcopy(auxfrontier.queue);
                     auxfrontier.empty();
+            '''
 
 
 def main():
     print(datetime.datetime.now())
-    file = "C:/Users/Juan/Desktop/AI_Search/lumosity_breadth_first_search_train.csv"
+    file = "C:/Users/eric/Desktop/AI_search_stuff/lumosity_breadth_first_search_train.csv"
     csv_read = Loader(file);
     map_list = csv_read.data_frame['board'].values.tolist();
-    problem = Problem(".......;.a-c-C.;...|.|.;.+-^-B.;.|.|.|.;.b.A-+.;.......;")
-    problem_real = Problem(map_list[4]);
+    #problem = Problem(".......;.a-c-C.;...|.|.;.+-^-B.;.|.|.|.;.b.A-+.;.......;")
+    problem_real = Problem(map_list[7]);
     road = breadth_first(problem_real);
 
     data = [];
@@ -85,7 +91,7 @@ def main():
         break;
 
     df = pd.DataFrame(data, columns=['id', 'breadth_first_search'])
-    df.to_csv('C:/Users/Juan/Desktop/AI_Search/lumosity_breadth_first_search_train_MINE.csv', index=False)
+    df.to_csv('C:/Users/eric/Desktop/AI_search stuff/lumosity_breadth_first_search_train_MINE.csv', index=False)
     print(datetime.datetime.now())
 
 

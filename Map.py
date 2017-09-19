@@ -70,10 +70,8 @@ class Map:
                 self.car_location = car_pos;
                 car.location = car_pos;
         elif 64 < self.board[car_pos[0], car_pos[1]] < 91:
-            for pet in car.pets:
-                if pet - 32 == self.board[car_pos[0], car_pos[1]]:
-                    car.drop_pet(self.board[car_pos[0], car_pos[1]])
-                    self.pet_in_house(car_pos);
+            if car.drop_pet(self.board[car_pos[0], car_pos[1]]):
+                self.pet_in_house(car_pos);
             self.car_location = car_pos;
             car.location = car_pos;
 
