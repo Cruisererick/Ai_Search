@@ -12,6 +12,7 @@ class Node:
         self.road = road + self.road;
 
         self.execute_action();
+        self.hashcode = hash(str(self.state.map.board) + str(self.state.car.location));
 
 
 
