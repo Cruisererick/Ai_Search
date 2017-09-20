@@ -1,7 +1,8 @@
+import numpy as np
 class Car:
 
     def __init__(self, car_pos, pets=[]):
-        self.location = car_pos
+        self.location = np.copy(car_pos)
         self.pets = pets.copy()
 
     def take_pet(self, pet):

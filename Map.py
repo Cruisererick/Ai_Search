@@ -3,17 +3,17 @@ import numpy as np
 
 class Map:
 
-    def __init__(self, board, car_pos=0, pets=-1, in_street=-1):
+    def __init__(self, board, car_pos=None, pets=-1, in_street=-1):
         self.pets_not_in_house = 0
         if type(board) == str:
             self.board = self.board_to_map(board)
         else:
             self.board = np.copy(board)
 
-        if car_pos == 0:
+        if car_pos is None:
             self.car_location = self.car_initial()
         else:
-            self.car_location = car_pos
+            self.car_location = np.copy(car_pos)
         if pets == -1:
             self.pets_not_in_house /= 2
         else:
@@ -57,7 +57,8 @@ class Map:
 
     def car_initial(self):
         [x, y] = np.where(self.board == -10)
-        return [x[0], y[0]]
+        aux = np.array([x, y])
+        return aux
 
     def move_car(self, car_pos, car):
 
@@ -74,7 +75,6 @@ class Map:
                 self.pet_in_house(car_pos)
             self.car_location = car_pos
             car.location = car_pos
-
         else:
             self.car_location = car_pos
             car.location = car_pos

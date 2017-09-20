@@ -23,20 +23,20 @@ class State:
 
     def move_car_down(self):
         down_pos = self.map.car_location
-        down_pos = [down_pos[0] + 2, down_pos[1]]
+        down_pos[0] += 2
         self.map.move_car(down_pos, self.car)
 
     def move_car_left(self):
         down_pos = self.map.car_location
-        down_pos = [down_pos[0], down_pos[1] - 2]
+        down_pos[1] -=  2
         self.map.move_car(down_pos, self.car)
 
     def move_car_right(self):
         down_pos = self.map.car_location
-        down_pos = [down_pos[0], down_pos[1] + 2]
+        down_pos[1] += 2
         self.map.move_car(down_pos, self.car)
 
     def move_car_up(self):
         down_pos = self.map.car_location
-        down_pos = [down_pos[0] - 2, down_pos[1]]
+        down_pos[0] -= 2
         self.map.move_car(down_pos, self.car)

@@ -1,4 +1,5 @@
 from State import State
+import hashlib
 
 
 class Node:
@@ -12,4 +13,7 @@ class Node:
         if action is not None:
             self.road.append(action)
         self.road = road + self.road
-        self.hashcode = hash(str(self.state.map.board) + str(self.state.car.location))
+        #self.hashcode = hash(str(self.state.map.board) + str(self.state.car.location))
+        map_hash = hashlib.sha1(self.state.map.board).hexdigest()
+        loc_hash = hash(self.state.car.location.tostring())
+        self.hashcode = map_hash + str(loc_hash)
