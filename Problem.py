@@ -1,60 +1,59 @@
-from State import State;
-from Map import Map;
-from Car import Car;
+from State import State
+from Map import Map
+from Car import Car
+
 
 class Problem:
 
     def __init__(self, map_string):
-        self.Create_Initial(map_string);
-        self.actions = ["d", "l", "r", "u"];
+        self.create_initial(map_string)
+        self.actions = ["d", "l", "r", "u"]
 
-
-    def Goal_Test(self, state):
+    @staticmethod
+    def goal_test(state):
         if 0 == state.map.pets_not_in_house:
-            return True;
+            return True
         else:
-            return False;
+            return False
 
-    def Create_Initial(self, map_string):
-        self.map = Map(map_string);
+    def create_initial(self, map_string):
+        self.map = Map(map_string)
         self.car = Car(self.map.car_location)
-        self.initial = State(self.map, self.car, None);
+        self.initial = State(self.map, self.car, None)
 
     def check_actions(self, state):
-        can_do = [];
+        can_do = []
         for actions in self.actions:
             if actions == "d":
-                down_pos = state.map.car_location;
-                down_pos = [down_pos[0] + 1, down_pos[1]];
+                down_pos = state.map.car_location
+                down_pos = [down_pos[0] + 1, down_pos[1]]
                 try:
                     if state.map.board[down_pos[0], down_pos[1]] != 0:
-                        can_do.append("d");
+                        can_do.append("d")
                 except:
-                    pass;
+                    pass
             elif actions == "l":
-                down_pos = state.map.car_location;
-                down_pos = [down_pos[0], down_pos[1] - 1];
+                down_pos = state.map.car_location
+                down_pos = [down_pos[0], down_pos[1] - 1]
                 try:
                     if state.map.board[down_pos[0], down_pos[1]] != 0:
-                        can_do.append("l");
+                        can_do.append("l")
                 except:
-                    pass;
+                    pass
             elif actions == "r":
-                down_pos = state.map.car_location;
-                down_pos = [down_pos[0], down_pos[1] + 1];
+                down_pos = state.map.car_location
+                down_pos = [down_pos[0], down_pos[1] + 1]
                 try:
                     if state.map.board[down_pos[0], down_pos[1]] != 0:
-                        can_do.append("r");
+                        can_do.append("r")
                 except:
-                    pass;
+                    pass
             elif actions == "u":
-                down_pos = state.map.car_location;
-                down_pos = [down_pos[0] - 1, down_pos[1]];
+                down_pos = state.map.car_location
+                down_pos = [down_pos[0] - 1, down_pos[1]]
                 try:
                     if state.map.board[down_pos[0], down_pos[1]] != 0:
-                        can_do.append("u");
+                        can_do.append("u")
                 except:
-                    pass;
-        return can_do;
-
-
+                    pass
+        return can_do

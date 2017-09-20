@@ -1,27 +1,19 @@
-import numpy as np
-
 class Car:
 
-    def __init__(self, car_pos, pets = np.zeros(20)):
-        self.location = car_pos;
-        self.pets = np.zeros(20);
-        for x in range (0, len(self.pets)):
-            self.pets[x] = pets[x];
+    def __init__(self, car_pos, pets=[]):
+        self.location = car_pos
+        self.pets = pets.copy()
 
     def take_pet(self, pet):
-        for x in range (0, len(self.pets)):
-            if self.pets[x] == 0:
-                self.pets[x] = pet
-                return True;
-        else:
-            return False
+        self.pets.append(pet)
+        return True
 
     def drop_pet(self, house):
-        pet_to_drop = house + 32;
+        pet_to_drop = house + 32
 
-        for x in range (0, len(self.pets)):
-             if self.pets[x] == pet_to_drop:
-                self.pets[x] = 0;
-                return True;
+        for x in range(0, len(self.pets)):
+            if self.pets[x] == pet_to_drop:
+                del self.pets[x]
+                return True
         else:
-            return False;
+            return False
